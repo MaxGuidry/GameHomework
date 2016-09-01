@@ -1,0 +1,3 @@
+﻿  Source.cpp
+c:\users\max.guidry\documents\github\gameshomework\gameshomework\source.cpp(10): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  GamesHomework.vcxproj -> C:\Users\max.guidry\Documents\GitHub\GamesHomework\Debug\GamesHomework.exe
