@@ -8,6 +8,8 @@ void CoinToss();
 int main()
 {
 	srand(time(NULL));
+	PlaySound(TEXT("C:\\Users\\max.guidry\\Documents\\Music\\Prayer Position Instrumental"), NULL, SND_ASYNC);
+	getchar();
 	CoinToss();
 	system("pause");
 	return 0;
