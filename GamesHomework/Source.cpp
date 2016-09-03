@@ -10,8 +10,8 @@ void TicTacToe();
 int main()
 {
 	srand(time(NULL));
+	PlaySound(TEXT("C:\\Users\\mguid\\Documents\\PeripheryIII\\Prayer Position Instrumental"), NULL, SND_ASYNC);
 	TicTacToe();
-	PlaySound(TEXT("C:\\Users\\max.guidry\\Documents\\Music\\Prayer Position Instrumental"), NULL, SND_ASYNC);
 	DiceRoll();
 	CoinToss();
 	getchar();
