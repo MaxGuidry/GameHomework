@@ -10,7 +10,7 @@ void TicTacToe();
 int main()
 {
 	srand(time(NULL));
-	PlaySound(TEXT("C:\\Users\\mguid\\Documents\\PeripheryIII\\Prayer Position Instrumental"), NULL, SND_ASYNC);
+	//PlaySound(TEXT("C:\\Users\\mguid\\Documents\\PeripheryIII\\Prayer Position Instrumental"), NULL, SND_ASYNC);
 	TicTacToe();
 	DiceRoll();
 	CoinToss();
@@ -112,62 +112,75 @@ void DiceRoll()
 
 void TicTacToe()
 {
-	char GridArray[9] = {219,219,219,219,219,219,219,219,219};
+	
 	std::cout << "Welcome to Tic Tac Toe! You are X's and the computer is O's" << std::endl;
 	bool IsGameWon = false;
-	while (IsGameWon == false)
+	do
 	{
-		int position;
-		std::cin >> position;
-		while (GridArray[position - 1] == 'X' || GridArray[position - 1] == 'O')
+		char GridArray[9] = { 219,219,219,219,219,219,219,219,219 };
+		while (IsGameWon == false)
 		{
+			int position;
 			std::cin >> position;
-		}
-		GridArray[position - 1] = 'X';
-		int ComputerPosition = rand() % 9 + 1;
-		while (GridArray[ComputerPosition - 1] == 'X' || GridArray[ComputerPosition - 1] == 'O')
-		{
-			ComputerPosition = rand() % 9 + 1;
-		}
-		GridArray[ComputerPosition - 1] = 'O';
-		for (int i = 1; i < 10; i++)
-		{
+			while (GridArray[position - 1] == 'X' || GridArray[position - 1] == 'O')
 			{
-				std::cout << GridArray[i - 1] << " ";
+				std::cin >> position;
 			}
-			if (i % 3 == 0)
+			GridArray[position - 1] = 'X';
+			int ComputerPosition = rand() % 9 + 1;
+			while (GridArray[ComputerPosition - 1] == 'X' || GridArray[ComputerPosition - 1] == 'O')
 			{
-				std::cout << std::endl;
+				ComputerPosition = rand() % 9 + 1;
 			}
-		}
-		for (int j = 3; j < 6; j++)
-		{
-			if (GridArray[j] == 'X' && GridArray[j - 3] == 'X' && GridArray[j + 3] == 'X')
+			GridArray[ComputerPosition - 1] = 'O';
+			for (int i = 1; i < 10; i++)
+			{
+				{
+					std::cout << GridArray[i - 1] << " ";
+				}
+				if (i % 3 == 0)
+				{
+					std::cout << std::endl;
+				}
+			}
+			for (int j = 3; j < 6; j++)
+			{
+				if (GridArray[j] == 'X' && GridArray[j - 3] == 'X' && GridArray[j + 3] == 'X')
+					IsGameWon = true;
+			}
+			for (int j = 1; j < 8; j += 3)
+			{
+				if (GridArray[j] == 'X' && GridArray[j - 1] == 'X' && GridArray[j + 1] == 'X')
+					IsGameWon = true;
+			}
+			if (GridArray[4] == 'X' && GridArray[0] == 'X' && GridArray[8] == 'X')
 				IsGameWon = true;
-		}
-		for (int j = 1; j < 8; j += 3)
-		{
-			if (GridArray[j] == 'X' && GridArray[j - 1] == 'X' && GridArray[j + 1] == 'X')
+			if (GridArray[4] == 'X' && GridArray[2] == 'X' && GridArray[6] == 'X')
 				IsGameWon = true;
-		}
-		if (GridArray[4] == 'X' && GridArray[0] == 'X' && GridArray[8] == 'X')
-			IsGameWon = true;
-		if (GridArray[4] == 'X' && GridArray[2] == 'X' && GridArray[6] == 'X')
-			IsGameWon = true;
-		for (int j = 3; j < 6; j++)
-		{
-			if (GridArray[j] == 'O' && GridArray[j - 3] == 'O' && GridArray[j + 3] == 'O')
+			for (int j = 3; j < 6; j++)
+			{
+				if (GridArray[j] == 'O' && GridArray[j - 3] == 'O' && GridArray[j + 3] == 'O')
+					IsGameWon = true;
+			}
+			for (int j = 1; j < 8; j += 3)
+			{
+				if (GridArray[j] == 'O' && GridArray[j - 1] == 'O' && GridArray[j + 1] == 'O')
+					IsGameWon = true;
+			}
+			if (GridArray[4] == 'O' && GridArray[0] == 'O' && GridArray[8] == 'O')
 				IsGameWon = true;
-		}
-		for (int j = 1; j < 8; j += 3)
-		{
-			if (GridArray[j] == 'O' && GridArray[j - 1] == 'O' && GridArray[j + 1] == 'O')
+			if (GridArray[4] == 'O' && GridArray[2] == 'O' && GridArray[6] == 'O')
 				IsGameWon = true;
+			std::cout << std::endl;
+
 		}
-		if (GridArray[4] == 'O' && GridArray[0] == 'O' && GridArray[8] == 'O')
-			IsGameWon = true;
-		if (GridArray[4] == 'O' && GridArray[2] == 'O' && GridArray[6] == 'O')
-			IsGameWon = true;
-		std::cout << std::endl;
-	}
+		std::cout << "Do you want to play again? y/n" << std::endl;
+		std::string choice;
+		std::cin.ignore();
+		std::getline(std::cin, choice);
+		if (choice[0] != 'n')
+		{
+			IsGameWon = false;
+		}
+	} while (IsGameWon == false);
 }
