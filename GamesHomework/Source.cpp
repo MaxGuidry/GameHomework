@@ -6,9 +6,11 @@
 void CoinToss();
 void DiceRoll();
 void TicTacToe();
+void RockPaperScissors();
 
 int main()
 {
+	RockPaperScissors();
 	srand(time(NULL));
 	//PlaySound(TEXT("C:\\Users\\mguid\\Documents\\PeripheryIII\\Prayer Position Instrumental"), NULL, SND_ASYNC);
 	TicTacToe();
@@ -112,7 +114,7 @@ void DiceRoll()
 
 void TicTacToe()
 {
-	
+
 	std::cout << "Welcome to Tic Tac Toe! You are X's and the computer is O's" << std::endl;
 	bool IsGameWon = false;
 	do
@@ -183,4 +185,60 @@ void TicTacToe()
 			IsGameWon = false;
 		}
 	} while (IsGameWon == false);
+}
+
+
+void RockPaperScissors()
+{
+	std::string PlayAgain;
+	while (PlayAgain[0] != 'n' && PlayAgain[0] != 'N')
+	{
+		int userChoice;
+		std::cout << "1-Rock" << std::endl << "2-Paper" << std::endl << "3-Scissors" << std::endl;
+		std::cin >> userChoice;
+		int computerChoice;
+		computerChoice = rand() % 3 + 1;
+		std::cout << "Computer chose: " << computerChoice << std::endl;
+
+		while (userChoice == computerChoice || userChoice > 3 || userChoice < 1)
+		{
+			std::cout << "You Tied try again" << std::endl;
+			std::cin >> userChoice;
+			computerChoice = rand() % 3 + 1;
+			std::cout << "Computer chose: " << computerChoice << std::endl;;
+		}
+
+
+		if (userChoice == computerChoice)
+		{
+			std::cout << "You tied try again" << std::endl;
+		}
+		else if (userChoice == 1 && computerChoice == 2)
+		{
+			std::cout << "You Lose" << std::endl;
+		}
+		else if (userChoice == 1 && computerChoice == 3)
+		{
+			std::cout << "You Win" << std::endl;
+		}
+		else if (userChoice == 2 && computerChoice == 1)
+		{
+			std::cout << "You Win" << std::endl;
+		}
+		else if (userChoice == 2 && computerChoice == 3)
+		{
+			std::cout << "You lose" << std::endl;
+		}
+		else if (userChoice == 3 && computerChoice == 1)
+		{
+			std::cout << "You win" << std::endl;
+		}
+		else if (userChoice == 3 && computerChoice == 2)
+		{
+			std::cout << "You lose" << std::endl;
+		}
+		std::cout << "Would you like to play again? y/n" << std::endl;
+		std::cin.ignore();
+		std::getline(std::cin, PlayAgain);
+	}
 }
