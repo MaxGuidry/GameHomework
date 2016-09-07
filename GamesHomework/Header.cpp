@@ -175,16 +175,21 @@ void Games::RockPaperScissors()
 		std::cin >> userChoice;
 		int computerChoice;
 		computerChoice = rand() % 3 + 1;
-		std::cout << "Computer chose: " << computerChoice << std::endl;
 
-		while (userChoice == computerChoice || userChoice > 3 || userChoice < 1)
+		while (userChoice == computerChoice)
 		{
 			std::cout << "You Tied try again" << std::endl;
 			std::cin >> userChoice;
 			computerChoice = rand() % 3 + 1;
-			std::cout << "Computer chose: " << computerChoice << std::endl;;
+		}
+		while (userChoice > 3 || userChoice < 1)
+		{
+			std::cout << "You are retarted please try again." << std::endl;
+			std::cin >> userChoice;
+			computerChoice = rand() % 3 + 1;
 		}
 
+		std::cout << "Computer chose: " << computerChoice << std::endl;
 
 		if (userChoice == computerChoice)
 		{
