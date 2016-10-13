@@ -6,7 +6,7 @@
 
 int main()
 {
-	Application* CurrentGame=new RPS();
+	Application* CurrentGame=new RPS(false);
 	CurrentGame->Start();
 	CurrentGame->Run();
 	CurrentGame->Shutdown();

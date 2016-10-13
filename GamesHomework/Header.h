@@ -8,6 +8,8 @@ public:
 	virtual void Update() = 0;
 	virtual void Shutdown() = 0;
 	void Run();
+	Application() {}
+	Application(bool gamestatus) :GameOver(gamestatus) {};
 protected:
 	bool GameOver;
 };
@@ -19,6 +21,7 @@ public:
 	void Start() { std::cout << "Welcome to Rock Paper Scissors\nYou will play against the computer who will choose randomly\n"; }
 	void Update() { Game(); }
 	RPS() {}
+	RPS(bool gamestatus) {};
 };
 class Games
 {
@@ -26,6 +29,5 @@ public:
 	void CoinToss();
 	void DiceRoll();
 	void TicTacToe();
-	void RockPaperScissors();
 
 };
