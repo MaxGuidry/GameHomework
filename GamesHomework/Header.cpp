@@ -4,7 +4,6 @@
 #include<time.h>
 #include<Windows.h>
 
-
 void Games::CoinToss()
 {
 	std::string PlayAgain;
@@ -17,32 +16,32 @@ void Games::CoinToss()
 		CoinSide = rand() % 2 + 1; //random side of the coin
 		switch (CoinSide)//logic for who wins the game
 		{
-			case 1:
+		case 1:
+		{
+			std::cout << "HEADS" << std::endl;
+			if (CoinSideGuess == CoinSide)
 			{
-				std::cout << "HEADS" << std::endl;
-				if (CoinSideGuess == CoinSide)
-				{
-					std::cout << "YOU WIN" << std::endl;
-				}
-				else
-				{
-					std::cout << "YOU LOSE" << std::endl;
-				}
-				break;
+				std::cout << "YOU WIN" << std::endl;
 			}
-			case 2:
+			else
 			{
-				std::cout << "TAILS" << std::endl;
-				if (CoinSideGuess == CoinSide)
-				{
-					std::cout << "YOU WIN" << std::endl;
-				}
-				else
-				{
-					std::cout << "YOU LOSE" << std::endl;
-				}
-				break;
+				std::cout << "YOU LOSE" << std::endl;
 			}
+			break;
+		}
+		case 2:
+		{
+			std::cout << "TAILS" << std::endl;
+			if (CoinSideGuess == CoinSide)
+			{
+				std::cout << "YOU WIN" << std::endl;
+			}
+			else
+			{
+				std::cout << "YOU LOSE" << std::endl;
+			}
+			break;
+		}
 		}
 		std::cout << "Do you want to play again? y/n" << std::endl;
 		std::cin.ignore();
@@ -97,7 +96,7 @@ void Games::TicTacToe()
 	bool IsGameWon = false;
 	do
 	{
-		char GridArray[9] = { 219,219,219,219,219,219,219,219,219 };
+		char GridArray[9] = { '219','219','219','219','219','219','219','219','219' };
 		while (IsGameWon == false)
 		{
 			int position;
@@ -165,62 +164,80 @@ void Games::TicTacToe()
 	} while (IsGameWon == false);
 }
 
-void Games::RockPaperScissors()
+
+void RPS::Shutdown()
+{
+	std::cout << "Program quitting";
+	for (int i = 0; i < 3; i++)
+	{
+		Sleep(300);
+		std::cout << ".";
+	}
+	exit(0);
+}
+
+void RPS::Game()
 {
 	std::string PlayAgain;
-	while (PlayAgain[0] != 'n' && PlayAgain[0] != 'N')
+	int userChoice;
+	int computerChoice;
+	std::cout << "1-Rock" << std::endl << "2-Paper" << std::endl << "3-Scissors" << std::endl;
+	std::cin >> userChoice;
+	computerChoice = rand() % 3 + 1;
+	while (userChoice == computerChoice)
 	{
-		int userChoice;
-		std::cout << "1-Rock" << std::endl << "2-Paper" << std::endl << "3-Scissors" << std::endl;
+		std::cout << "You Tied try again" << std::endl;
 		std::cin >> userChoice;
-		int computerChoice;
 		computerChoice = rand() % 3 + 1;
+	}
+	while (userChoice > 3 || userChoice < 1)
+	{
+		std::cout << "You are retarted please try again." << std::endl;
+		std::cin >> userChoice;
+		computerChoice = rand() % 3 + 1;
+	}
 
-		while (userChoice == computerChoice)
-		{
-			std::cout << "You Tied try again" << std::endl;
-			std::cin >> userChoice;
-			computerChoice = rand() % 3 + 1;
-		}
-		while (userChoice > 3 || userChoice < 1)
-		{
-			std::cout << "You are retarted please try again." << std::endl;
-			std::cin >> userChoice;
-			computerChoice = rand() % 3 + 1;
-		}
+	std::cout << "Computer chose: " << computerChoice << std::endl;
 
-		std::cout << "Computer chose: " << computerChoice << std::endl;
+	if (userChoice == computerChoice)
+	{
+		std::cout << "You tied try again" << std::endl;
+	}
+	else if (userChoice == 1 && computerChoice == 2)
+	{
+		std::cout << "You Lose" << std::endl;
+	}
+	else if (userChoice == 1 && computerChoice == 3)
+	{
+		std::cout << "You Win" << std::endl;
+	}
+	else if (userChoice == 2 && computerChoice == 1)
+	{
+		std::cout << "You Win" << std::endl;
+	}
+	else if (userChoice == 2 && computerChoice == 3)
+	{
+		std::cout << "You lose" << std::endl;
+	}
+	else if (userChoice == 3 && computerChoice == 1)
+	{
+		std::cout << "You win" << std::endl;
+	}
+	else if (userChoice == 3 && computerChoice == 2)
+	{
+		std::cout << "You lose" << std::endl;
+	}
+	std::cout << "Would you like to play again? y/n" << std::endl;
+	std::cin.ignore();
+	std::getline(std::cin, PlayAgain);
+	if (PlayAgain[0] == 'n')
+		GameOver = true;
+}
 
-		if (userChoice == computerChoice)
-		{
-			std::cout << "You tied try again" << std::endl;
-		}
-		else if (userChoice == 1 && computerChoice == 2)
-		{
-			std::cout << "You Lose" << std::endl;
-		}
-		else if (userChoice == 1 && computerChoice == 3)
-		{
-			std::cout << "You Win" << std::endl;
-		}
-		else if (userChoice == 2 && computerChoice == 1)
-		{
-			std::cout << "You Win" << std::endl;
-		}
-		else if (userChoice == 2 && computerChoice == 3)
-		{
-			std::cout << "You lose" << std::endl;
-		}
-		else if (userChoice == 3 && computerChoice == 1)
-		{
-			std::cout << "You win" << std::endl;
-		}
-		else if (userChoice == 3 && computerChoice == 2)
-		{
-			std::cout << "You lose" << std::endl;
-		}
-		std::cout << "Would you like to play again? y/n" << std::endl;
-		std::cin.ignore();
-		std::getline(std::cin, PlayAgain);
+void Application::Run()
+{
+	while (GameOver != true)
+	{
+		Update();
 	}
 }

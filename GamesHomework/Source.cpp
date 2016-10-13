@@ -6,12 +6,9 @@
 
 int main()
 {
-	Games PlayGames;
-	srand(time(NULL));
-	PlayGames.RockPaperScissors();	
-	PlayGames.TicTacToe();
-	PlayGames.DiceRoll();
-	PlayGames.CoinToss();
-	system("pause");
+	Application* CurrentGame=new RPS();
+	CurrentGame->Start();
+	CurrentGame->Run();
+	CurrentGame->Shutdown();
 	return 0;
 }
