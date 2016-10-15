@@ -5,6 +5,7 @@
 #include "Header.h"
 int main()
 {
+	std::cout << "Should be playing sound right now.\n";
 	srand(time(NULL));
 	PlaySound(TEXT("mus_combat_01.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Application* CurrentGame=new RPS(false);
